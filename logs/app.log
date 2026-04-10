@@ -1,0 +1,128 @@
+2026-04-08 20:02:09,368 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 83, in quit_app
+    sys.exit(0)
+SystemExit: 0
+2026-04-08 20:02:10,541 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 83, in quit_app
+    sys.exit(0)
+SystemExit: 0
+2026-04-08 20:03:51,684 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 83, in quit_app
+    sys.exit(0)
+SystemExit: 0
+2026-04-08 20:23:26,140 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 83, in quit_app
+    self.root.quit()
+    ^^^^^^^^^^^
+SystemExit: 0
+2026-04-08 20:23:27,189 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 83, in quit_app
+    self.root.quit()
+    ^^^^^^^^^^^
+SystemExit: 0
+2026-04-08 20:28:11,781 - ERROR - An error occurred when calling message handler
+Traceback (most recent call last):
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 412, in _dispatcher
+    return int(icon._message_handlers.get(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_win32.py", line 224, in _on_notify
+    descriptors[index - 1](self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 328, in inner
+    callback(self)
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 453, in __call__
+    return self._action(icon, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ANACONDA\envs\note\Lib\site-packages\pystray\_base.py", line 548, in wrapper0
+    return action()
+           ^^^^^^^^
+  File "E:\note\utils\tray_manager.py", line 26, in <lambda>
+    pystray.MenuItem("退出", lambda: self.on_quit())
+                                     ^^^^^^^^^^^^^^
+  File "E:\note\main.py", line 84, in quit_app
+    sys.exit(0)
+SystemExit: 0
