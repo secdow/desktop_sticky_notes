@@ -4,8 +4,8 @@ import winreg
 
 class AutoStart:
     @staticmethod
+    #设置开机自启动
     def set(enabled: bool):
-        """设置开机自启动（Windows）"""
         key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
         app_name = "StickyNotes"
         exe_path = sys.executable if getattr(sys, 'frozen', False) else os.path.abspath(sys.argv[0])

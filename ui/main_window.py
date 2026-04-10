@@ -47,7 +47,7 @@ class MainWindow:
 
         self.tree.bind("<ButtonRelease-1>", self.on_tree_click)
 
-        # 按钮区域：只保留新建便签和新建任务，移除“切换完成”按钮
+        #按钮区域
         btn_frame = tk.Frame(self.frame)
         btn_frame.pack(fill=tk.X, pady=5)
         tk.Button(btn_frame, text="新建便签", command=self.new_note).pack(side=tk.LEFT, padx=2)
@@ -55,8 +55,8 @@ class MainWindow:
 
         self.refresh_task_list()
 
+    #刷新任务列表
     def refresh_task_list(self):
-        """刷新任务列表"""
         for item in self.tree.get_children():
             self.tree.delete(item)
         tasks = self.task_ctrl.get_all_tasks()
@@ -67,8 +67,8 @@ class MainWindow:
             self.tree.insert("", tk.END, values=(
             t.id, t.title, priority_map.get(t.priority, "中"), due_str, completed_str, "编辑", "删除"))
 
+    #处理表格点击事件：完成列切换状态，编辑列打开编辑对话框，删除列二次确认删除
     def on_tree_click(self, event):
-        """处理表格点击事件：完成列切换状态，编辑列打开编辑对话框，删除列二次确认删除"""
         region = self.tree.identify_region(event.x, event.y)
         if region != "cell":
             return
@@ -91,8 +91,8 @@ class MainWindow:
                 self.task_ctrl.delete_task(task_id)
                 self.refresh_task_list()
 
+    #修改任务
     def edit_task(self, task_id):
-        """弹出编辑对话框，修改任务"""
         tasks = self.task_ctrl.get_all_tasks()
         task = next((t for t in tasks if t.id == task_id), None)
         if not task:

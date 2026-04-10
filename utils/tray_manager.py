@@ -11,7 +11,7 @@ class TrayManager:
         self.running = False
 
     def create_image(self):
-        # 生成一个简单的图标（你也可以加载外部图片）
+        # 生成一个简单的图标（也可以加载外部图片）
         width = 64
         height = 64
         image = Image.new('RGB', (width, height), (255, 255, 255))

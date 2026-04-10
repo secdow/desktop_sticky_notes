@@ -5,7 +5,6 @@ from datetime import datetime
 from typing import Dict, Any, List
 
 class FileStorageManager:
-    """单例模式，管理 data/ 目录下的所有 JSON 文件"""
     _instance = None
 
     def __new__(cls):
@@ -37,6 +36,7 @@ class FileStorageManager:
     def _get_file_path(self, name: str) -> str:
         return os.path.join(self.data_dir, self._files[name])
 
+    #加载JSON文件
     def load(self, name: str) -> Dict[str, Any]:
         """加载指定 JSON 文件，若不存在或损坏则返回初始结构"""
         path = self._get_file_path(name)
@@ -57,23 +57,23 @@ class FileStorageManager:
         temp_path = path + ".tmp"
         backup_path = os.path.join(self.backup_dir, f"{name}_{datetime.now():%Y%m%d%H%M%S}.json")
         try:
-            # 备份现有文件
+            #备份现有文件
             if os.path.exists(path):
                 shutil.copy2(path, backup_path)
-            # 写入临时文件
+            #写入临时文件
             with open(temp_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2, default=self._json_serializer)
-            # 原子替换（Windows 上 os.replace 是原子的）
+            #原子替换（Windows 上 os.replace 是原子的）
             os.replace(temp_path, path)
-            # 清理旧备份，保留最近5个
+            #清理旧备份，保留最近5个
             self._cleanup_old_backups(name, keep=5)
             return True
         except Exception as e:
             print(f"保存 {name} 失败: {e}")
             return False
 
+    #返回初始数据结构
     def _get_initial_structure(self, name: str) -> Dict:
-        """返回初始数据结构"""
         structures = {
             "notes": {"next_id": 1, "notes": []},
             "tasks": {"next_id": 1, "tasks": []},
@@ -95,8 +95,8 @@ class FileStorageManager:
             return obj.strftime("%Y-%m-%d %H:%M:%S")
         raise TypeError(f"Type {type(obj)} not serializable")
 
+    #从最近的备份恢复
     def _restore_from_backup(self, name: str):
-        """从最近的备份恢复"""
         import glob
         pattern = os.path.join(self.backup_dir, f"{name}_*.json")
         backups = sorted(glob.glob(pattern))

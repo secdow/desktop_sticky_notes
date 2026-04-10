@@ -20,7 +20,6 @@ class App:
         self.root.title("桌面便签")
         self.root.geometry("500x400")
         self.root.minsize(500, 400)
-        # 绑定关闭事件（直接关闭程序，不隐藏）
         self.root.protocol("WM_DELETE_WINDOW", self.on_main_window_close)
 
         # 主窗口
@@ -65,8 +64,6 @@ class App:
             del self.note_windows[note_id]
 
     def toggle_main_window(self):
-        # 因为主窗口关闭时不再隐藏，而是直接退出，所以此方法可能不再需要
-        # 但保留以防热键调用：如果主窗口被 withdraw 了，则重新显示；否则隐藏（但实际不会隐藏）
         if self.root.state() == "withdrawn":
             self.root.deiconify()
             self.root.lift()
@@ -74,7 +71,6 @@ class App:
             self.root.withdraw()
 
     def on_main_window_close(self):
-        """主窗口关闭时弹出确认对话框，然后退出程序"""
         if messagebox.askyesno("退出", "是否保留当前便签？\n选择“是”将保留所有便签数据，下次启动恢复。\n选择“否”将删除所有便签数据。"):
             # 保留数据，直接退出
             self.quit_app()
@@ -84,7 +80,6 @@ class App:
             self.quit_app()
 
     def delete_all_data(self):
-        """清空所有便签、任务、提醒、标签数据（保留文件结构但清空内容）"""
         # 清空 notes.json
         notes_data = {"next_id": 1, "notes": []}
         self.storage.save("notes", notes_data)
@@ -104,7 +99,6 @@ class App:
         self.tray.show_notification("提醒", message)
 
     def quit_app(self):
-        """彻底退出程序"""
         # 关闭所有便签窗口
         for note_id, win in list(self.note_windows.items()):
             try:

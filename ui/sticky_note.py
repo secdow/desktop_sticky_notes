@@ -25,11 +25,11 @@ class StickyNote:
         if note.is_topmost:
             self.window.attributes("-topmost", True)
 
-        # 顶部工具栏：放置置顶复选框和颜色按钮（可选）
+        # 顶部工具栏：放置置顶复选框和颜色按钮
         self.toolbar = tk.Frame(self.window, bg=self.COLORS.get(note.color, "#FFFFCC"))
         self.toolbar.pack(side=tk.TOP, fill=tk.X, padx=2, pady=2)
 
-        # 置顶复选框（第一眼可见）
+        # 置顶复选框
         self.topmost_var = tk.BooleanVar(value=note.is_topmost)
         self.topmost_cb = tk.Checkbutton(
             self.toolbar,
@@ -41,7 +41,7 @@ class StickyNote:
         )
         self.topmost_cb.pack(side=tk.LEFT, padx=5)
 
-        # 可选：添加一个颜色快捷按钮（快速切换颜色）
+        # 添加一个颜色快捷按钮（快速切换颜色）
         self.color_btn = tk.Menubutton(self.toolbar, text="颜色", relief=tk.RAISED,
                                        bg=self.COLORS.get(note.color, "#FFFFCC"))
         self.color_menu = tk.Menu(self.color_btn, tearoff=0)
@@ -56,14 +56,14 @@ class StickyNote:
         self.text.insert("1.0", note.content)
         self.text.bind("<KeyRelease>", self.auto_save)
 
-        # 右键菜单（仅保留颜色选项，因为置顶已有可见控件，删除选项已移除）
+        # 右键菜单
         self.create_context_menu()
 
-        # 绑定关闭事件（点击 X）
+        # 绑定关闭事件
         self.window.protocol("WM_DELETE_WINDOW", self.close)
 
+    # 右键菜单
     def create_context_menu(self):
-        """右键菜单只包含颜色切换（可选，如果觉得工具栏的颜色按钮已够用，可以完全去掉右键菜单）"""
         self.menu = tk.Menu(self.window, tearoff=0)
         color_menu = tk.Menu(self.menu, tearoff=0)
         for color_name in self.COLORS:
@@ -74,15 +74,15 @@ class StickyNote:
     def show_menu(self, event):
         self.menu.post(event.x_root, event.y_root)
 
+    # 切换置顶状态
     def toggle_topmost(self):
-        """切换置顶状态（由复选框触发）"""
         is_topmost = self.topmost_var.get()
         self.window.attributes("-topmost", is_topmost)
         self.note.is_topmost = is_topmost
         self.controller.update_note(self.note)
 
+    # 更改背景颜色
     def change_color(self, color_name):
-        """更改便签背景颜色"""
         self.note.color = color_name
         new_bg = self.COLORS[color_name]
         self.window.configure(bg=new_bg)
@@ -92,8 +92,8 @@ class StickyNote:
         self.text.configure(bg=new_bg)
         self.controller.update_note(self.note)
 
+    # 自动保存便签内容
     def auto_save(self, event=None):
-        """自动保存便签内容、位置和大小"""
         content = self.text.get("1.0", tk.END).rstrip("\n")
         self.note.content = content
         title = content.split("\n")[0][:20] if content else "便签"
@@ -107,8 +107,8 @@ class StickyNote:
 
         self.controller.update_note(self.note)
 
+    # 关闭并删除便签
     def close(self):
-        """点击 X 关闭按钮时弹出确认删除对话框"""
         if messagebox.askyesno("删除便签", "确定要删除此便签吗？\n删除后无法恢复。"):
             self.auto_save()
             self.controller.delete_note(self.note.id)

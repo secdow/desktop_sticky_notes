@@ -5,8 +5,8 @@ class HotkeyManager:
     def __init__(self):
         self.hotkeys = {}
 
+    #设置全局热键
     def register(self, hotkey, callback):
-        """注册全局热键"""
         try:
             keyboard.add_hotkey(hotkey, callback)
             self.hotkeys[hotkey] = callback

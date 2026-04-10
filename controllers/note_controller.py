@@ -38,7 +38,6 @@ class NoteController:
         return False
 
     def delete_note(self, note_id: int) -> bool:
-        """纯删除操作，不弹窗"""
         data = self.storage.load("notes")
         original_count = len(data["notes"])
         data["notes"] = [n for n in data["notes"] if n["id"] != note_id]

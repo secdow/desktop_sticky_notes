@@ -7,7 +7,6 @@ from typing import List
 
 class ReminderController(threading.Thread):
     def __init__(self, callback_notify):
-        """callback_notify 用于通知UI弹窗"""
         super().__init__(daemon=True)
         self.storage = FileStorageManager()
         self.callback_notify = callback_notify
@@ -31,14 +30,14 @@ class ReminderController(threading.Thread):
                 rem.is_triggered = True
                 triggered.append(rem)
         if triggered:
-            # 更新存储
+            #更新存储
             for rem in triggered:
                 for i, r in enumerate(data["reminders"]):
                     if r["id"] == rem.id:
                         data["reminders"][i] = rem.to_dict()
                         break
             self.storage.save("reminders", data)
-            # 回调通知
+            #回调通知
             for rem in triggered:
                 self.callback_notify(rem.message or f"提醒: {rem.target_type} ID {rem.target_id}")
 

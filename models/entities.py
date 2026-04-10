@@ -35,7 +35,7 @@ class Note:
 
     @classmethod
     def from_dict(cls, data: dict) -> "Note":
-        # 处理日期字符串转换
+        #处理日期字符串转换
         created = data.get("created_at")
         updated = data.get("updated_at")
         if isinstance(created, str):
