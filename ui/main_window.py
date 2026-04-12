@@ -50,7 +50,7 @@ class MainWindow:
         self.task_menu = tk.Menu(self.task_menu_btn, tearoff=0)
         self.task_menu.add_command(label="新建任务", command=self.new_task_dialog)
         self.task_menu.add_command(label="批量删除任务", command=self.batch_delete_tasks)
-        self.task_menu.add_command(label="清空已完成任务", command=self.clear_completed_tasks)
+        self.task_menu.add_command(label="删除已完成任务", command=self.clear_completed_tasks)
         self.task_menu.add_command(label="删除已过期任务", command=self.delete_expired_tasks)
         self.task_menu_btn.config(menu=self.task_menu)
         self.task_menu_btn.pack(side=tk.LEFT)
@@ -318,6 +318,14 @@ class MainWindow:
         minute_combo.pack(side=tk.LEFT, padx=2)
         tk.Label(date_frame, text="分", font=("微软雅黑", 10)).pack(side=tk.LEFT)
 
+        # 提前提醒（分钟）
+        tk.Label(dialog, text="提前提醒（分钟）:", font=("微软雅黑", 10)).pack(pady=5)
+        remind_frame = tk.Frame(dialog)
+        remind_frame.pack()
+        remind_var = tk.IntVar(value=task.remind_minutes)
+        tk.Spinbox(remind_frame, from_=0, to=1440, textvariable=remind_var, width=10).pack(side=tk.LEFT)
+        tk.Label(remind_frame, text="（0表示截止时间提醒）", font=("微软雅黑", 8)).pack(side=tk.LEFT, padx=5)
+
         # 如果有现有日期，填充到选择框
         if task.due_date:
             year_combo.set(str(task.due_date.year))
@@ -333,6 +341,7 @@ class MainWindow:
                 return
             new_desc = desc_text.get("1.0", tk.END).strip()
             new_priority = priority_var.get()
+            remind_minutes = remind_var.get()  # 获取提前提醒分钟数（新增）
 
             # 构建截止日期
             try:
@@ -349,6 +358,7 @@ class MainWindow:
             task.description = new_desc
             task.priority = new_priority
             task.due_date = new_due
+            task.remind_minutes = remind_minutes  # 保存提醒分钟数（新增）
             self.task_ctrl.update_task(task)
             self.refresh_task_list()
             dialog.destroy()
@@ -430,12 +440,21 @@ class MainWindow:
         minute_combo.pack(side=tk.LEFT, padx=2)
         tk.Label(date_frame, text="分", font=("微软雅黑", 10)).pack(side=tk.LEFT)
 
+        # 提前提醒（分钟）
+        tk.Label(dialog, text="提前提醒（分钟）:", font=("微软雅黑", 10)).pack(pady=5)
+        remind_frame = tk.Frame(dialog)
+        remind_frame.pack()
+        remind_var = tk.IntVar(value=0)
+        tk.Spinbox(remind_frame, from_=0, to=1440, textvariable=remind_var, width=10).pack(side=tk.LEFT)
+        tk.Label(remind_frame, text="（0表示截止时间提醒）", font=("微软雅黑", 8)).pack(side=tk.LEFT, padx=5)
+
         def save():
             title = title_entry.get().strip()
             if not title:
                 messagebox.showerror("错误", "标题不能为空")
                 return
             priority = priority_var.get()
+            remind_minutes = remind_var.get()  # 移到外面，确保总是有值
 
             # 构建截止日期
             try:
@@ -448,7 +467,7 @@ class MainWindow:
             except ValueError:
                 due_date = None
 
-            self.task_ctrl.create_task(title, priority=priority, due_date=due_date)
+            self.task_ctrl.create_task(title, priority=priority, due_date=due_date, remind_minutes=remind_minutes)
             self.refresh_task_list()
             dialog.destroy()
 
@@ -574,7 +593,7 @@ class MainWindow:
 
     def clear_completed_tasks(self):
         """清空所有已完成的任务"""
-        if messagebox.askyesno("清空已完成任务", "确定要删除所有已完成的任务吗？"):
+        if messagebox.askyesno("删除已完成任务", "确定要删除所有已完成的任务吗？"):
             tasks = self.task_ctrl.get_all_tasks()
             deleted = 0
             for task in tasks:

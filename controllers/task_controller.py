@@ -12,7 +12,7 @@ class TaskController:
         data = self.storage.load("tasks")
         return [Task.from_dict(t) for t in data.get("tasks", [])]
 
-    def create_task(self, title: str, description="", priority=3, due_date=None, note_id=None) -> Task:
+    def create_task(self, title: str, description="", priority=3, due_date=None, note_id=None, remind_minutes=0) -> Task:
         """创建任务，优先级默认3（中）"""
         data = self.storage.load("tasks")
         next_id = data["next_id"]
@@ -22,7 +22,8 @@ class TaskController:
             description=description,
             priority=priority,
             due_date=due_date,
-            note_id=note_id
+            note_id=note_id,
+            remind_minutes=remind_minutes
         )
         data["tasks"].append(new_task.to_dict())
         data["next_id"] = next_id + 1

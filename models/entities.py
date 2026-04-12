@@ -58,17 +58,17 @@ class Note:
             updated_at=updated,
         )
 
-
 @dataclass
 class Task:
     id: int
     title: str
     description: str = ""
-    priority: int = 3          # 1最高,2高,3中,4低,5最低
+    priority: int = 3
     due_date: Optional[datetime] = None
     is_completed: bool = False
     note_id: Optional[int] = None
     tag_ids: List[int] = field(default_factory=list)
+    remind_minutes: int = 0   # 新增：提前提醒分钟数（0表示不提前，在截止时间提醒）
     created_at: datetime = field(default_factory=datetime.now)
 
     def to_dict(self) -> dict:
@@ -81,6 +81,7 @@ class Task:
             "is_completed": self.is_completed,
             "note_id": self.note_id,
             "tag_ids": self.tag_ids,
+            "remind_minutes": self.remind_minutes,   # 新增
             "created_at": self.created_at,
         }
 
@@ -96,11 +97,12 @@ class Task:
             id=data["id"],
             title=data["title"],
             description=data.get("description", ""),
-            priority=data.get("priority", 1),
+            priority=data.get("priority", 3),
             due_date=due,
             is_completed=data.get("is_completed", False),
             note_id=data.get("note_id"),
             tag_ids=data.get("tag_ids", []),
+            remind_minutes=data.get("remind_minutes", 0),   # 新增
             created_at=created,
         )
 

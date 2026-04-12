@@ -63,6 +63,16 @@ class SettingsDialog:
                    width=10, font=("微软雅黑", 10)).pack(side=tk.LEFT)
         tk.Label(interval_frame, text="秒", font=("微软雅黑", 10)).pack(side=tk.LEFT, padx=5)
 
+        # 重复提醒间隔（分钟）
+        frame_repeat = tk.Frame(general_frame)
+        frame_repeat.pack(fill=tk.X, padx=20, pady=15)
+        tk.Label(frame_repeat, text="重复提醒间隔（分钟）:", font=("微软雅黑", 10)).pack(anchor="w")
+        repeat_frame = tk.Frame(frame_repeat)
+        repeat_frame.pack(anchor="w", pady=5)
+        self.repeat_var = tk.IntVar(value=self.settings.get("reminder_repeat_minutes", 5))
+        tk.Spinbox(repeat_frame, from_=1, to=60, textvariable=self.repeat_var, width=10).pack(side=tk.LEFT)
+        tk.Label(repeat_frame, text="分钟（每轮扫描间隔内只提醒一次）", font=("微软雅黑", 8)).pack(side=tk.LEFT, padx=5)
+
         # 格式化数据按钮
         frame4 = tk.Frame(general_frame)
         frame4.pack(fill=tk.X, padx=20, pady=30)
@@ -81,7 +91,7 @@ class SettingsDialog:
         # 保存通用设置
         self.settings["auto_start"] = self.auto_start_var.get()
         self.settings["reminder_interval_seconds"] = self.interval_var.get()
-
+        self.settings["reminder_repeat_minutes"] = self.repeat_var.get()
         # 保存到文件
         self.storage.save("settings", self.settings)
 

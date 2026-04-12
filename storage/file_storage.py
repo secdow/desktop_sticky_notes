@@ -84,7 +84,8 @@ class FileStorageManager:
             "settings": {
                 "theme": "light",
                 "auto_start": False,
-                "reminder_interval_seconds": 30
+                "reminder_interval_seconds": 30,
+                "reminder_repeat_minutes": 5
             },
             "image_notes": {"next_id": 1, "image_notes": []}  # 新增
         }
