@@ -11,7 +11,8 @@ class TaskController:
         data = self.storage.load("tasks")
         return [Task.from_dict(t) for t in data.get("tasks", [])]
 
-    def create_task(self, title: str, description="", priority=1, due_date=None, note_id=None) -> Task:
+    def create_task(self, title: str, description="", priority=3, due_date=None, note_id=None) -> Task:
+        """创建任务，优先级默认3（中）"""
         data = self.storage.load("tasks")
         next_id = data["next_id"]
         new_task = Task(

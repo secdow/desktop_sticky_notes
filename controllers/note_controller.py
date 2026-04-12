@@ -45,3 +45,11 @@ class NoteController:
             return False
         self.storage.save("notes", data)
         return True
+
+    def delete_all_notes(self) -> bool:
+        """删除所有便签"""
+        data = self.storage.load("notes")
+        data["notes"] = []
+        data["next_id"] = 1
+        self.storage.save("notes", data)
+        return True

@@ -25,7 +25,8 @@ class FileStorageManager:
             "tasks": "tasks.json",
             "tags": "tags.json",
             "reminders": "reminders.json",
-            "settings": "settings.json"
+            "settings": "settings.json",
+            "image_notes": "image_notes.json"
         }
         self._initialized = True
 
@@ -82,10 +83,9 @@ class FileStorageManager:
             "settings": {
                 "theme": "light",
                 "auto_start": False,
-                "reminder_interval_seconds": 30,
-                "hotkey_new_note": "ctrl+shift+n",
-                "hotkey_show_hide": "ctrl+shift+h"
-            }
+                "reminder_interval_seconds": 30
+            },
+            "image_notes": {"next_id": 1, "image_notes": []}  # 新增
         }
         return structures.get(name, {})
 

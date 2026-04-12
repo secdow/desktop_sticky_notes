@@ -63,7 +63,7 @@ class Task:
     id: int
     title: str
     description: str = ""
-    priority: int = 1          # 0低 1中 2高
+    priority: int = 3          # 1最高,2高,3中,4低,5最低
     due_date: Optional[datetime] = None
     is_completed: bool = False
     note_id: Optional[int] = None
@@ -155,4 +155,52 @@ class Reminder:
             message=data.get("message", ""),
             is_triggered=data.get("is_triggered", False),
             created_at=created,
+        )
+
+@dataclass
+class ImageNote:
+    id: int
+    image_path: str
+    title: str = ""
+    x: int = 100
+    y: int = 150
+    width: int = 400
+    height: int = 300
+    is_topmost: bool = False
+    created_at: datetime = field(default_factory=datetime.now)
+    updated_at: datetime = field(default_factory=datetime.now)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "image_path": self.image_path,
+            "title": self.title,
+            "x": self.x,
+            "y": self.y,
+            "width": self.width,
+            "height": self.height,
+            "is_topmost": self.is_topmost,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ImageNote":
+        created = data.get("created_at")
+        updated = data.get("updated_at")
+        if isinstance(created, str):
+            created = datetime.strptime(created, "%Y-%m-%d %H:%M:%S")
+        if isinstance(updated, str):
+            updated = datetime.strptime(updated, "%Y-%m-%d %H:%M:%S")
+        return cls(
+            id=data["id"],
+            image_path=data["image_path"],
+            title=data.get("title", ""),
+            x=data.get("x", 100),
+            y=data.get("y", 150),
+            width=data.get("width", 400),
+            height=data.get("height", 300),
+            is_topmost=data.get("is_topmost", False),
+            created_at=created,
+            updated_at=updated,
         )

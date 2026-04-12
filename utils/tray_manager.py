@@ -21,7 +21,6 @@ class TrayManager:
 
     def run(self):
         menu = pystray.Menu(
-            pystray.MenuItem("新建便签", lambda: self.on_new_note()),
             pystray.MenuItem("显示/隐藏主窗口", lambda: self.on_show_hide()),
             pystray.MenuItem("退出", lambda: self.on_quit())
         )
