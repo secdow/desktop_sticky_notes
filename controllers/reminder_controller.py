@@ -1,9 +1,10 @@
 import threading
 import time
 from datetime import datetime
-from storage.file_storage import FileStorageManager
+
 from models.entities import Reminder
-from typing import List
+from storage.file_storage import FileStorageManager
+
 
 class ReminderController(threading.Thread):
     def __init__(self, callback_notify):

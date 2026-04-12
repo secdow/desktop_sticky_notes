@@ -1,6 +1,6 @@
 import pystray
 from PIL import Image, ImageDraw
-import threading
+
 
 class TrayManager:
     def __init__(self, on_new_note, on_show_hide, on_quit):

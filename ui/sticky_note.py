@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+
 from controllers.note_controller import NoteController
 from models.entities import Note
 

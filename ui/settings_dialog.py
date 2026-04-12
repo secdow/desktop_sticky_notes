@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from utils.auto_start import AutoStart
+
 from storage.file_storage import FileStorageManager
+from utils.auto_start import AutoStart
 
 
 class SettingsDialog:

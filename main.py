@@ -1,19 +1,21 @@
+import os
+import shutil
+import sys
+import threading
 import tkinter as tk
 from tkinter import messagebox
-import threading
-import sys
-import shutil
-import os
-from storage.file_storage import FileStorageManager
-from controllers.note_controller import NoteController
-from controllers.task_controller import TaskController
-from controllers.reminder_controller import ReminderController
+
 from controllers.image_note_controller import ImageNoteController
+from controllers.note_controller import NoteController
+from controllers.reminder_controller import ReminderController
+from controllers.task_controller import TaskController
+from storage.file_storage import FileStorageManager
+from ui.image_note import ImageNoteWindow
 from ui.main_window import MainWindow
 from ui.sticky_note import StickyNote
-from ui.image_note import ImageNoteWindow
-from utils.tray_manager import TrayManager
 from utils.logger import setup_logger
+from utils.tray_manager import TrayManager
+
 
 class App:
     def __init__(self):

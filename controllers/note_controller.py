@@ -1,7 +1,9 @@
-from storage.file_storage import FileStorageManager
-from models.entities import Note
 from datetime import datetime
 from typing import List
+
+from models.entities import Note
+from storage.file_storage import FileStorageManager
+
 
 class NoteController:
     def __init__(self):

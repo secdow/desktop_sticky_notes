@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
-from controllers.task_controller import TaskController
-from controllers.tag_controller import TagController
-from controllers.search_controller import SearchController
-from controllers.note_controller import NoteController
 from datetime import datetime
+from tkinter import ttk, messagebox
+
+from controllers.note_controller import NoteController
+from controllers.search_controller import SearchController
+from controllers.tag_controller import TagController
+from controllers.task_controller import TaskController
 
 
 class MainWindow:

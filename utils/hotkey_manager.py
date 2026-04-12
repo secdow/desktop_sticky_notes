@@ -1,5 +1,5 @@
 import keyboard
-import threading
+
 
 class HotkeyManager:
     def __init__(self):

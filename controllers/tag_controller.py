@@ -1,6 +1,8 @@
-from storage.file_storage import FileStorageManager
-from models.entities import Tag
 from typing import List
+
+from models.entities import Tag
+from storage.file_storage import FileStorageManager
+
 
 class TagController:
     def __init__(self):
