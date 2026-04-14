@@ -55,6 +55,8 @@ class MainWindow:
         self.task_menu_btn.config(menu=self.task_menu)
         self.task_menu_btn.pack(side=tk.LEFT)
 
+        tk.Button(btn_frame, text="文本片段", command=self.open_snippets, width=12).pack(side=tk.LEFT, padx=(5, 0))
+
         # 移除原来的新建便签、新建任务、设置按钮，设置按钮可保留或移到别处，这里先保留设置按钮在右侧
         # 可选：添加一个“设置”按钮单独放在右边
         tk.Button(btn_frame, text="设置", command=self.open_settings, width=12).pack(side=tk.RIGHT, padx=(5, 0))
@@ -633,3 +635,7 @@ class MainWindow:
         )
         if file_path:
             self.on_new_image_note(file_path)
+
+    def open_snippets(self):
+        from ui.snippets_window import SnippetsWindow
+        SnippetsWindow(self.master)
