@@ -67,10 +67,6 @@
    python main.py
    ```
 
-### 使用打包好的可执行文件
-- 下载 `桌面便签.exe`
-- 双击运行（所有数据保存在 `.exe` 同目录的 `data` 文件夹）
-
 ## 🛠️ 打包为独立 exe
 
 使用 PyInstaller 打包（需安装 Python 环境）：
